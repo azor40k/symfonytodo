@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UtilisateurController!{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center">Liste des Utilisateurs</h1><br/>
+
+{% if utilisateurs is not empty %}
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>E-Mail</th>
+            <th>Date d'inscription</th>
+            <th>Nombre de tâche</th>
+            <th></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for un_utilisateur in utilisateurs %}
+        <tr>
+            <td>{{un_utilisateur.nom}}</td>
+            <td>{{un_utilisateur.prenom}}</td>
+            <td>{{un_utilisateur.email}}</td>
+            <td>{{un_utilisateur.date|date('d/m/Y H-i-s')}}</td>
+
+            
+            <td>
+
+            {#non fonctionnel 
+            {# {% if nbr is not empty %}
+            {% for n in nbr %}
+                 {{i}} 
+            {% endfor %}      
+
+            {% else %}
+            x     
+            {% endif %}#}
+            x
+            </td>
+            
+
+            <td><a href="{{ path('task_utilisateur', {'id':un_utilisateur.id}) }}">Voir tâche attribuée</a></td>
+            <td>            
+            <a href="{{ path('update_utilisateur', {'id':un_utilisateur.id}) }}">Modifier</a> | 
+            <a href="{{ path('delete_utilisateur', {'id':un_utilisateur.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<h3 class="text-danger">Il n'y a aucun Utilisateur inscrit </h3>
+{% endif %}
+
+<br />
+
+{{ form(form_utilisateur_new) }}
+
+</div>
+{% endblock %}

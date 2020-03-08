@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tâches Utilisateur{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Tâches assignées à {{un_utilisateur.nom}} {{un_utilisateur.prenom}}</h1>
+<h2 class="text-center">({{un_utilisateur.email}})</h2><br/>
+
+{% if usertasks is not empty %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nom de la tâche</th>
+            <th>Date de rendu</th>
+            <th>Description</th>
+            <th>Progression</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for taskuser in usertasks %}
+        <tr>
+             <td>{#{{ form(form_usertask_update) }}#}</td> 
+            <td>{{taskuser.nom}}</td>
+            <td>{{taskuser.deadline|date('d/m/Y')}}</td>
+            <td>{{taskuser.description}}</td>
+
+            <td>
+            {% if taskuser.done %}
+            <span>Terminé</span>
+            {% else %}
+            <span>à Faire</span>
+            {% endif %}
+            </td>
+
+            <td>            
+            <a href="{{ path('update_usertask', {'id':taskuser.id}) }}">Modifier</a> | 
+            <a href="{{ path('delete_task', {'id':taskuser.id}) }}">Supprimer</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<h3 class="text-danger">Il n'y a aucune tâche assignée à {{un_utilisateur.nom}} {{un_utilisateur.prenom}}</h3>
+{% endif %} 
+
+<br />
+<a href="/">Retour</a>
+</div>
+
+{% endblock %}

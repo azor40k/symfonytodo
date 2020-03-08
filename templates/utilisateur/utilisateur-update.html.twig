@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Utilisateur{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Modification Utilisateur</h1>
+
+<h3><b>Nom:</b> {{un_utilisateur.nom}}</h3>
+<h3><b>Prénom:</b> {{un_utilisateur.prenom}}</h3>
+<h3><b>E-Mail:</b> {{un_utilisateur.email}}</h3>
+
+<br/>
+
+{{ form(form_utilisateur_update) }}
+
+<a href="/">Retour</a>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Tâche{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Modification Tâche</h1>
+
+<div>
+    <h3><b>Nom:</b> <label>{{un_task.nom}}</label></h3>
+
+    <h3><b>Date de rendu:</b> <label>{{un_task.deadline|date('d/m/Y')}}</label></h3>
+
+    <h3><b>Description:</b> <label>{{un_task.description}}</label></h3>
+
+    <h3><b>Progression:</b>
+        <label>{% if un_task.done %}<span>Terminé</span>
+            {% else %}<span>à Faire</span>
+            {% endif %}</label></h3>
+</div><br />
+
+{{ form(form_task_update) }}<br/>
+
+<a href="/task">Retour</a>
+</div>
+
+{% endblock %}
